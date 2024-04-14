@@ -16,10 +16,12 @@ public class MapGenerator : MonoBehaviour
     public int seed;
     public bool autoUpdate;
     public Vector2 offset;
-    public enum DrawMode {NoiseMap, ColorMap};
+    public enum DrawMode {NoiseMap, ColorMap, ErosionMap, ContinentalnessMap, PeaksAndValleysMap};
 	public DrawMode drawMode;
     public TerrainType[] regions;
     public Vector2[] continentalnessHeights;
+    public Vector2[] erosionHeights;
+    public Vector2[] peaksAndValleysHeights;
     public void GenerateMap() {
         
         // float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset);
@@ -43,10 +45,15 @@ public class MapGenerator : MonoBehaviour
         // }
 		
         float[,] continentalness = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset, continentalnessHeights);
+        float[,] erosion = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset, erosionHeights);
+        float[,] peaksAndValleys = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset, peaksAndValleysHeights);
+        float[,] noiseMap = new float[mapWidth, mapHeight];
         Color[] colorMap = new Color[mapWidth * mapHeight];
         for ( int x = 0; x < mapWidth; x++ ) {
             for ( int y = 0; y < mapHeight; y++ ) {
-                float currentHeight = continentalness[x, y];
+                float noiseVal = (continentalness[x, y] + erosion[x, y] + peaksAndValleys[x, y]) / 3f;
+                float currentHeight = noiseVal;
+                noiseMap[x, y] = noiseVal;
                 
                 // draw colors
                 for ( int i = 0; i < regions.Length; i++ ) {
@@ -59,8 +66,15 @@ public class MapGenerator : MonoBehaviour
         }
         MapRender display = FindObjectOfType<MapRender>();
         if ( drawMode == DrawMode.NoiseMap ) {
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
+        } else if ( drawMode == DrawMode.ContinentalnessMap ) {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(continentalness));
+        } else if ( drawMode == DrawMode.ErosionMap ) {
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(erosion));
+        } else if ( drawMode == DrawMode.PeaksAndValleysMap ) {
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(peaksAndValleys));
         } else if ( drawMode == DrawMode.ColorMap ) {
+            
             display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
     }
