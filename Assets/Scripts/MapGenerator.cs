@@ -10,9 +10,15 @@ public class MapGenerator : MonoBehaviour
     public int mapWidth;
     public int mapHeight;
     public float scale;
-    public int layers;
-    public float lacunarity;
-    public float persistence;
+    public float pvPers;
+    public float pvLac;
+    public int pvLayers;
+    public float eroPers;
+    public float eroLac;
+    public int eroLayers;
+    public float contPers;
+    public float contLac;
+    public int contLayers;
     public int seed;
     public bool autoUpdate;
     public Vector2 offset;
@@ -44,9 +50,9 @@ public class MapGenerator : MonoBehaviour
         //     display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         // }
 		
-        float[,] continentalness = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset, continentalnessHeights);
-        float[,] erosion = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset, erosionHeights);
-        float[,] peaksAndValleys = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset, peaksAndValleysHeights);
+        float[,] continentalness = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, contLayers, contLac, contPers, seed, offset, continentalnessHeights);
+        float[,] erosion = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, eroLayers, eroLac, eroPers, seed, offset, erosionHeights);
+        float[,] peaksAndValleys = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, pvLayers, pvLac, pvPers, seed, offset, peaksAndValleysHeights);
         float[,] noiseMap = new float[mapWidth, mapHeight];
         Color[] colorMap = new Color[mapWidth * mapHeight];
         for ( int x = 0; x < mapWidth; x++ ) {
@@ -89,15 +95,7 @@ public class MapGenerator : MonoBehaviour
         if ( mapHeight < 1 ) {
             mapHeight = 1;
         }
-        if ( lacunarity <= 0 ) {
-            lacunarity = 0.001f;
-        }
-        if ( persistence <= 0 ) {
-            persistence = 0.001f;
-        }
-        if ( layers < 1 ) {
-            layers = 1;
-        }
+        
         for ( int i = 0; i < continentalnessHeights.Length; i++ ) {
             if ( continentalnessHeights[i].x < 0) {
                 continentalnessHeights[i].x = 0;
@@ -119,3 +117,5 @@ public struct TerrainType {
 	public float height;
 	public Color color;
 }
+
+
