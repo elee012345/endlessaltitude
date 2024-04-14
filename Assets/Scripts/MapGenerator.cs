@@ -19,13 +19,36 @@ public class MapGenerator : MonoBehaviour
     public enum DrawMode {NoiseMap, ColorMap};
 	public DrawMode drawMode;
     public TerrainType[] regions;
+    public Vector2[] continentalnessHeights;
     public void GenerateMap() {
         
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset);
+        // float[,] noiseMap = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset);
+        // Color[] colorMap = new Color[mapWidth * mapHeight];
+        // for ( int x = 0; x < mapWidth; x++ ) {
+        //     for ( int y = 0; y < mapHeight; y++ ) {
+        //         float currentHeight = noiseMap[x, y];
+        //         for ( int i = 0; i < regions.Length; i++ ) {
+        //             if ( currentHeight < regions[i].height) {
+        //                 colorMap[y * mapWidth + x] = regions[i].color;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
+        // MapRender display = FindObjectOfType<MapRender>();
+        // if ( drawMode == DrawMode.NoiseMap ) {
+        //     display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
+        // } else if ( drawMode == DrawMode.ColorMap ) {
+        //     display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
+        // }
+		
+        float[,] continentalness = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, layers, lacunarity, persistence, seed, offset, continentalnessHeights);
         Color[] colorMap = new Color[mapWidth * mapHeight];
         for ( int x = 0; x < mapWidth; x++ ) {
             for ( int y = 0; y < mapHeight; y++ ) {
-                float currentHeight = noiseMap[x, y];
+                float currentHeight = continentalness[x, y];
+                
+                // draw colors
                 for ( int i = 0; i < regions.Length; i++ ) {
                     if ( currentHeight < regions[i].height) {
                         colorMap[y * mapWidth + x] = regions[i].color;
@@ -36,12 +59,10 @@ public class MapGenerator : MonoBehaviour
         }
         MapRender display = FindObjectOfType<MapRender>();
         if ( drawMode == DrawMode.NoiseMap ) {
-            display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
+            display.DrawTexture(TextureGenerator.TextureFromHeightMap(continentalness));
         } else if ( drawMode == DrawMode.ColorMap ) {
             display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
-		
-        
     }
 
     void OnValidate() {
@@ -63,6 +84,19 @@ public class MapGenerator : MonoBehaviour
         if ( layers < 1 ) {
             layers = 1;
         }
+        for ( int i = 0; i < continentalnessHeights.Length; i++ ) {
+            if ( continentalnessHeights[i].x < 0) {
+                continentalnessHeights[i].x = 0;
+            } else if ( continentalnessHeights[i].x > 1) {
+                continentalnessHeights[i].x = 1;
+            }
+            if ( continentalnessHeights[i].y < 0) {
+                continentalnessHeights[i].y = 0;
+            } else if ( continentalnessHeights[i].y > 1) {
+                continentalnessHeights[i].y = 1;
+            }
+        }
+        
     }
 }
 [System.Serializable]
