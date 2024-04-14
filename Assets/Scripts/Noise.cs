@@ -9,10 +9,6 @@ public class Noise : MonoBehaviour
     public static float[,] GenerateNoiseMap(int mapWidth, int mapHeight, float scale, int layers, float lacunarity, float persistence, int seed, Vector2 offset, Vector2[] heightAdjustments) {
 		
 		
-        if ( heightAdjustments.Length < 2 ) {
-            heightAdjustments[0] = new Vector2(0, 0);
-            heightAdjustments[1] = new Vector2(1, 1);
-        }
         float[,] noiseMap = new float[mapWidth,mapHeight];
         System.Random rng = new System.Random(seed);
         Vector2[] layerOffsets = new Vector2[layers]; 
