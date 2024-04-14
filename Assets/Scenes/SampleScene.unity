@@ -408,7 +408,7 @@ MonoBehaviour:
     height: 0.85
     color: {r: 0.34177226, g: 0.3112153, b: 0.29136762, a: 1}
   - name: mountains
-    height: 0.92
+    height: 0.86
     color: {r: 0.3532362, g: 0.3532362, b: 0.3532362, a: 1}
   - name: snow
     height: 1
