@@ -369,34 +369,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapWidth: 783
   mapHeight: 484
-  pvScale: 46.5
-  pvPers: 5
-  pvLac: 2
+  pvScale: 40.8
+  pvPers: 6
+  pvLac: 1.5
   pvLayers: 3
-  eroScale: 65.3
+  eroScale: 128.5
   eroPers: 0.01
   eroLac: 1
   eroLayers: 4
-  contScale: 33.3
+  contScale: 60
   contPers: 0.3
   contLac: 3
   contLayers: 5
-  seed: 58
+  seed: 10
   autoUpdate: 1
   offset: {x: -34.83, y: 20.2}
   drawMode: 1
   regions:
   - name: deep water
-    height: 0.2
+    height: 0.1
     color: {r: 0.025718087, g: 0.41779426, b: 0.78313833, a: 1}
   - name: water
-    height: 0.3
+    height: 0.2
     color: {r: 0, g: 0.51684, b: 1, a: 0}
   - name: dark sand
-    height: 0.33
+    height: 0.28
     color: {r: 0.6169095, g: 0.55062157, b: 0.28546986, a: 1}
   - name: beach
-    height: 0.36
+    height: 0.31
     color: {r: 0.8175305, g: 0.75378513, b: 0.5001444, a: 0}
   - name: grass
     height: 0.5
@@ -405,7 +405,7 @@ MonoBehaviour:
     height: 0.65
     color: {r: 0.037720177, g: 0.3933605, b: 0.09310676, a: 0}
   - name: rocks
-    height: 0.8
+    height: 0.85
     color: {r: 0.34177226, g: 0.3112153, b: 0.29136762, a: 1}
   - name: mountains
     height: 0.92
@@ -434,9 +434,9 @@ MonoBehaviour:
   - {x: 0.0625, y: 0.6875}
   - {x: 0.375, y: 0.5}
   - {x: 0.25, y: 0.6}
-  - {x: 0.4375, y: 0.2}
-  - {x: 0.75, y: 0.05}
-  - {x: 0.8, y: 0.25}
+  - {x: 0.4375, y: 0.19}
+  - {x: 0.75, y: 0.1}
+  - {x: 0.85, y: 0.25}
   - {x: 0.87, y: 0.22}
   - {x: 0.94, y: 0.1}
   - {x: 1, y: 0}

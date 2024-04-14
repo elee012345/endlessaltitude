@@ -55,11 +55,27 @@ public class MapGenerator : MonoBehaviour
         float[,] continentalness = Noise.GenerateNoiseMap(mapWidth, mapHeight, contScale, contLayers, contLac, contPers, seed, offset, continentalnessHeights);
         float[,] erosion = Noise.GenerateNoiseMap(mapWidth, mapHeight, eroScale, eroLayers, eroLac, eroPers, seed, offset, erosionHeights);
         float[,] peaksAndValleys = Noise.GenerateNoiseMap(mapWidth, mapHeight, pvScale, pvLayers, pvLac, pvPers, seed, offset, peaksAndValleysHeights);
-        float[,] noiseMap = new float[mapWidth, mapHeight];
+        for ( int x = 0; x < mapWidth; x++ ) {
+            for ( int y = 0; y < mapHeight; y++ ) {
+                peaksAndValleys[x, y] = peaksAndValleys[x, y] * 0.5f + 0.25f;
+                if ( peaksAndValleys[x, y] < 0.32f ) {
+                    peaksAndValleys[x, y] = peaksAndValleys[x, y] - 0.6f;
+                }
+                if ( peaksAndValleys[x, y] > 0.56f ) {
+                    peaksAndValleys[x, y] += 0.2f;
+                }
+                // if ( peaksAndValleys[x, y] > 0.8f ) {    
+                //     peaksAndValleys[x, y] = peaksAndValleys[x, y] - 0.3f;
+                // }
+                continentalness[x, y] = continentalness[x, y] * 1.3f - 0.2f;
+                erosion[x, y] = erosion[x, y] * 1.6f - 0.3f;
+            }
+        }   
+        float[,] noiseMap = new float[mapWidth, mapHeight]; 
         Color[] colorMap = new Color[mapWidth * mapHeight];
         for ( int x = 0; x < mapWidth; x++ ) {
             for ( int y = 0; y < mapHeight; y++ ) {
-                float noiseVal = (continentalness[x, y] + erosion[x, y] + peaksAndValleys[x, y]) / 3f;
+                float noiseVal = Mathf.Pow(Mathf.Clamp((continentalness[x, y] + erosion[x, y] + peaksAndValleys[x, y]) / 3.0f, 0.0f, 1.0f), 1.3f);
                 float currentHeight = noiseVal;
                 noiseMap[x, y] = noiseVal;
                 
