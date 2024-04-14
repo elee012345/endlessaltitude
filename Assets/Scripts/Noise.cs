@@ -50,7 +50,7 @@ public class Noise : MonoBehaviour
 
                 if ( noiseHeight > maxNoiseHeight ) {
                     maxNoiseHeight = noiseHeight;
-                }
+                } 
                 if ( noiseHeight < minNoiseHeight ) {
                     minNoiseHeight = noiseHeight;
                 }
