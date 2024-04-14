@@ -335,12 +335,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071990919}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 315, y: 1, z: 161}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1309657419}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1071990921
 MonoBehaviour:
@@ -367,16 +367,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79e7b73cbec7c549935965df2cd65a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 315
-  mapHeight: 161
-  scale: 59.1
-  layers: 6
-  lacunarity: 1.9
-  persistence: 0.67
-  seed: 56
+  mapWidth: 783
+  mapHeight: 484
+  scale: 46.4
+  layers: 5
+  lacunarity: 2.2
+  persistence: 0.56
+  seed: 43
   autoUpdate: 1
-  offset: {x: 36, y: 9.7}
-  drawMode: 1
+  offset: {x: -32.2, y: 20.2}
+  drawMode: 0
   regions:
   - name: deep water
     height: 0.3
@@ -384,6 +384,9 @@ MonoBehaviour:
   - name: water
     height: 0.48
     color: {r: 0, g: 0.51684, b: 1, a: 0}
+  - name: dark sand
+    height: 0.51
+    color: {r: 0.6169095, g: 0.55062157, b: 0.28546986, a: 1}
   - name: beach
     height: 0.56
     color: {r: 0.8175305, g: 0.75378513, b: 0.5001444, a: 0}
@@ -402,6 +405,15 @@ MonoBehaviour:
   - name: snow
     height: 1
     color: {r: 0.9894913, g: 0.9796839, b: 0.9796839, a: 1}
+  continentalnessHeights:
+  - {x: 0, y: 1}
+  - {x: 0.083, y: 0.05}
+  - {x: 0.29, y: 0.1}
+  - {x: 0.35, y: 0.5}
+  - {x: 0.35, y: 0.5}
+  - {x: 0.5, y: 0.55}
+  - {x: 0.6, y: 0.8}
+  - {x: 1, y: 1}
 --- !u!1 &1309657416
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,10 +492,9 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 315, y: 1, z: 161}
+  m_LocalScale: {x: 783, y: 1, z: 484}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1071990920}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -492,4 +503,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 1071990920}
   - {fileID: 1309657419}

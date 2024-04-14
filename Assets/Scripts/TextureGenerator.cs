@@ -4,7 +4,7 @@ using System.Collections;
 public static class TextureGenerator {
 
 	public static Texture2D TextureFromColorMap(Color[] colourMap, int width, int height) {
-		Texture2D texture = new Texture2D (width, height);
+		Texture2D texture = new Texture2D(width, height);
 		texture.filterMode = FilterMode.Point;
 		texture.wrapMode = TextureWrapMode.Clamp;
 		texture.SetPixels(colourMap);
@@ -20,11 +20,11 @@ public static class TextureGenerator {
 		Color[] colorMap = new Color[width * height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				colorMap[y * width + x] = Color.Lerp(Color.black, Color.white, heightMap [x, y]);
+				colorMap[y * width + x] = Color.Lerp(Color.black, Color.white, heightMap[x, y]);
 			}
 		}
 
-		return TextureFromColorMap (colorMap, width, height);
+		return TextureFromColorMap(colorMap, width, height);
 	}
 
 }
