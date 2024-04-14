@@ -370,34 +370,40 @@ MonoBehaviour:
   mapWidth: 783
   mapHeight: 484
   scale: 46.4
-  layers: 5
-  lacunarity: 2.2
-  persistence: 0.56
-  seed: 43
+  pvPers: 5
+  pvLac: 2
+  pvLayers: 3
+  eroPers: 0.00001
+  eroLac: 4
+  eroLayers: 4
+  contPers: 0.001
+  contLac: 9.38
+  contLayers: 3
+  seed: 58
   autoUpdate: 1
-  offset: {x: -32.2, y: 20.2}
+  offset: {x: -31.45, y: 20.2}
   drawMode: 1
   regions:
   - name: deep water
-    height: 0.3
+    height: 0.2
     color: {r: 0.025718087, g: 0.41779426, b: 0.78313833, a: 1}
   - name: water
-    height: 0.48
+    height: 0.3
     color: {r: 0, g: 0.51684, b: 1, a: 0}
   - name: dark sand
-    height: 0.51
+    height: 0.33
     color: {r: 0.6169095, g: 0.55062157, b: 0.28546986, a: 1}
   - name: beach
-    height: 0.56
+    height: 0.36
     color: {r: 0.8175305, g: 0.75378513, b: 0.5001444, a: 0}
   - name: grass
-    height: 0.65
+    height: 0.55
     color: {r: 0.11483837, g: 0.5939815, b: 0.18628173, a: 0}
   - name: foliage
     height: 0.75
     color: {r: 0.037720177, g: 0.3933605, b: 0.09310676, a: 0}
   - name: rocks
-    height: 0.85
+    height: 0.8
     color: {r: 0.34177226, g: 0.3112153, b: 0.29136762, a: 1}
   - name: mountains
     height: 0.92
@@ -416,6 +422,13 @@ MonoBehaviour:
   - {x: 1, y: 1}
   erosionHeights:
   - {x: 0, y: 0}
+  - {x: 0.2, y: 0.05}
+  - {x: 0.41, y: 0.29}
+  - {x: 0.6, y: 0.35}
+  - {x: 0.7, y: 0.79}
+  - {x: 1, y: 0.9}
+  peaksAndValleysHeights:
+  - {x: 0, y: 0}
   - {x: 0.0625, y: 0.6875}
   - {x: 0.375, y: 0.5}
   - {x: 0.25, y: 0.6}
@@ -425,9 +438,6 @@ MonoBehaviour:
   - {x: 0.87, y: 0.22}
   - {x: 0.94, y: 0.1}
   - {x: 1, y: 0}
-  peaksAndValleysHeights:
-  - {x: 0, y: 0}
-  - {x: 1, y: 1}
 --- !u!1 &1309657416
 GameObject:
   m_ObjectHideFlags: 0
