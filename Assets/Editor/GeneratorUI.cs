@@ -8,14 +8,15 @@ public class MapGeneratorEditor : Editor {
 	public override void OnInspectorGUI() {
 		MapGenerator mapGen = (MapGenerator)target;
 
-		if (DrawDefaultInspector ()) {
+		if (DrawDefaultInspector()) {
 			if (mapGen.autoUpdate) {
-				mapGen.GenerateNoiseMap ();
+				mapGen.GenerateNoiseMap();
 			}
 		}
 
 		if (GUILayout.Button ("Generate")) {
-			mapGen.GenerateNoiseMap ();
+			mapGen.GenerateNoiseMap();
 		}
 	}
+    
 }
