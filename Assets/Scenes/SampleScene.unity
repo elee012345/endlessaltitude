@@ -369,19 +369,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapWidth: 783
   mapHeight: 484
-  scale: 46.4
+  pvScale: 46.5
   pvPers: 5
   pvLac: 2
   pvLayers: 3
-  eroPers: 0.00001
-  eroLac: 4
+  eroScale: 65.3
+  eroPers: 0.01
+  eroLac: 1
   eroLayers: 4
-  contPers: 0.001
-  contLac: 9.38
-  contLayers: 3
+  contScale: 33.3
+  contPers: 0.3
+  contLac: 3
+  contLayers: 5
   seed: 58
   autoUpdate: 1
-  offset: {x: -31.45, y: 20.2}
+  offset: {x: -36.4, y: 20.2}
   drawMode: 1
   regions:
   - name: deep water

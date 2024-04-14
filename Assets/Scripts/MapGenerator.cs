@@ -9,13 +9,15 @@ public class MapGenerator : MonoBehaviour
 {
     public int mapWidth;
     public int mapHeight;
-    public float scale;
+    public float pvScale;
     public float pvPers;
     public float pvLac;
     public int pvLayers;
+    public float eroScale;
     public float eroPers;
     public float eroLac;
     public int eroLayers;
+    public float contScale;
     public float contPers;
     public float contLac;
     public int contLayers;
@@ -50,9 +52,9 @@ public class MapGenerator : MonoBehaviour
         //     display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         // }
 		
-        float[,] continentalness = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, contLayers, contLac, contPers, seed, offset, continentalnessHeights);
-        float[,] erosion = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, eroLayers, eroLac, eroPers, seed, offset, erosionHeights);
-        float[,] peaksAndValleys = Noise.GenerateNoiseMap(mapWidth, mapHeight, scale, pvLayers, pvLac, pvPers, seed, offset, peaksAndValleysHeights);
+        float[,] continentalness = Noise.GenerateNoiseMap(mapWidth, mapHeight, contScale, contLayers, contLac, contPers, seed, offset, continentalnessHeights);
+        float[,] erosion = Noise.GenerateNoiseMap(mapWidth, mapHeight, eroScale, eroLayers, eroLac, eroPers, seed, offset, erosionHeights);
+        float[,] peaksAndValleys = Noise.GenerateNoiseMap(mapWidth, mapHeight, pvScale, pvLayers, pvLac, pvPers, seed, offset, peaksAndValleysHeights);
         float[,] noiseMap = new float[mapWidth, mapHeight];
         Color[] colorMap = new Color[mapWidth * mapHeight];
         for ( int x = 0; x < mapWidth; x++ ) {
@@ -86,9 +88,6 @@ public class MapGenerator : MonoBehaviour
     }
 
     void OnValidate() {
-        if (scale <= 0) {
-			scale = 0.001f;
-		}
         if ( mapWidth < 1 ) {
             mapWidth = 1;
         }
