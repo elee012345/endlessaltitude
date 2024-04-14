@@ -10,6 +10,7 @@ public class MapRender : MonoBehaviour
         int mapHeight = noiseMap.GetLength(1);
         Texture2D noiseTexture = new Texture2D(mapWidth, mapHeight);
         Color[] colorMap = new Color[mapWidth * mapHeight];
+        
         for (int x = 0; x < mapWidth; x++) {
             for (int y = 0; y < mapHeight; y++) {
                 colorMap[y*mapWidth + x] = Color.Lerp(Color.black, Color.white, noiseMap[x, y]);
